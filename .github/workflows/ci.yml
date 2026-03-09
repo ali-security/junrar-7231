@@ -25,10 +25,12 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build
+          cache-disabled: true
       - name: Jacoco
         uses: gradle/gradle-build-action@v2
         with:
           arguments: jacocoTestReport
+          cache-disabled: true
       - name: List build output
         if: matrix.java == '8'
         run: |
