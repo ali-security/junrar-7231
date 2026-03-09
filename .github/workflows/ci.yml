@@ -25,12 +25,12 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build
-          cache-disabled: true
+          cache-disabled: true  # github had issues with the cache at the time of writing
       - name: Jacoco
         uses: gradle/gradle-build-action@v2
         with:
           arguments: jacocoTestReport
-          cache-disabled: true
+          cache-disabled: true  # github had issues with the cache at the time of writing
       - name: List build output
         if: matrix.java == '8'
         run: |
@@ -39,18 +39,18 @@ jobs:
       - name: List JAR artifacts
         if: matrix.java == '8'
         run: find build/libs -name "*.jar" -ls 
-      # - name: Upload JAR artifact
-      #   uses: actions/upload-artifact@v4
-      #   if: matrix.java == '8'
-      #   with:
-      #     name: junrar-jar
-      #     path: build/libs/
-      # - name: Upload test report
-      #   uses: actions/upload-artifact@v4
-      #   if: matrix.java == '8'
-      #   with:
-      #     name: test-report
-      #     path: build/reports/tests/
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        if: matrix.java == '8'
+        with:
+          name: junrar-jar
+          path: build/libs/
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        if: matrix.java == '8'
+        with:
+          name: test-report
+          path: build/reports/tests/
       - uses: codecov/codecov-action@v2
         if: matrix.java == '8'
 
