@@ -68,7 +68,8 @@ jobs:
           java-version: '8'
           java-package: jdk
           distribution: temurin
-          cache: gradle
+          # cache: gradle
+          cache: none   # github had issues with the cache at the time of writing
       - name: Install dependencies
         run: npm ci --omit=dev --ignore-scripts
       - name: Release
