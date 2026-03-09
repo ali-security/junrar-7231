@@ -29,6 +29,18 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: jacocoTestReport
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v3
+        if: matrix.java == '8'
+        with:
+          name: junrar-jar
+          path: build/libs/*.jar
+      - name: Upload test report
+        uses: actions/upload-artifact@v3
+        if: matrix.java == '8'
+        with:
+          name: test-report
+          path: build/reports/tests/
       - uses: codecov/codecov-action@v2
         if: matrix.java == '8'
 
