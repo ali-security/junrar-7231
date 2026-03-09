@@ -30,13 +30,13 @@ jobs:
         with:
           arguments: jacocoTestReport
       - name: Upload JAR artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: matrix.java == '8'
         with:
           name: junrar-jar
           path: build/libs/*.jar
       - name: Upload test report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: matrix.java == '8'
         with:
           name: test-report
